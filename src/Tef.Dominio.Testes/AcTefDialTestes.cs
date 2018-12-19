@@ -7,7 +7,7 @@ namespace Tef.Dominio.Testes
     public class AcTefDialTestes
     {
         [TestMethod]
-        [TestCategory("AcTefDial")]
+        [TestCategory(nameof(AcTefDial))]
         public void Testar_Requisicao_ATV()
         {
             var acTefDial = CriaAcTefDial();
@@ -20,7 +20,7 @@ namespace Tef.Dominio.Testes
         }
 
         [TestMethod]
-        [TestCategory("AcTefDial")]
+        [TestCategory(nameof(AcTefDial))]
         public void Testar_Requisicao_CNC()
         {
             var acTefDial = CriaAcTefDial();
@@ -30,6 +30,16 @@ namespace Tef.Dominio.Testes
             var retorno = acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
 
             Assert.AreEqual(true, retorno != null);
+        }
+
+        [TestMethod]
+        [TestCategory(nameof(AcTefDial))]
+        [ExpectedException(typeof(AcTefException))]
+        public void Testar_Operacao_Sem_Inicializar()
+        {
+            var acTefDial = CriaAcTefDial();
+
+            var retorno = acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
         }
 
         private static AcTefDial CriaAcTefDial()
