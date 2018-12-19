@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace Tef.Dominio.Testes
 {
     public class AcTefRequisicaoFake : IAcTefRequisicao
     {
+        private string _arquivoCancelamentoCnc;
+        private TefLinhaLista _requisicao;
+
         public AcTefRequisicaoFake(ConfigRequisicao configRequisicao)
         {
-            
+            _arquivoCancelamentoCnc = $"{Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path))}\\Assets\\ArquivoCancelamentoCnc.001";
         }
 
         public event EventHandler<AguardaRespostaEventArgs> AguardandoResposta;
@@ -24,19 +29,15 @@ namespace Tef.Dominio.Testes
 
         public TefLinhaLista Enviar(TefLinhaLista requisicao)
         {
-            if (requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor == "ATV")
+            _requisicao = requisicao;
+            var resposta = new List<TefLinha>
             {
-                var resposta = new List<TefLinha>
-                {
-                    new TefLinha("000-000", requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor),
-                    new TefLinha("001-000", requisicao.BuscaLinha(AcTefIdentificadorCampos.Identificacao).Valor),
-                    new TefLinha("999-999", "0")
-                };
+                new TefLinha("000-000", requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor),
+                new TefLinha("001-000", requisicao.BuscaLinha(AcTefIdentificadorCampos.Identificacao).Valor),
+                new TefLinha("999-999", "0")
+            };
 
-                return new TefLinhaLista(resposta);
-            }
-
-            return null;
+            return new TefLinhaLista(resposta);
         }
 
         public void OnAguardandoResposta(AguardaRespostaEventArgs e)
@@ -46,7 +47,24 @@ namespace Tef.Dominio.Testes
 
         public TefLinhaLista AguardaRespostaRequisicao()
         {
-            throw new NotImplementedException();
+            if (_requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor == "CNC")
+            {
+                var resposta = new List<TefLinha>();
+
+                using (var sr = new StreamReader(_arquivoCancelamentoCnc))
+                {
+                    var linha = string.Empty;
+
+                    while ((linha = sr.ReadLine()) != null)
+                    {
+                        resposta.Add(new TefLinha(linha));
+                    }
+                }
+
+                return new TefLinhaLista(resposta);
+            }
+
+            return null;
         }
 
         public void OnImprimirVia(ImprimeViaEventArgs e)

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tef.Dominio.Testes
 {
@@ -18,6 +19,19 @@ namespace Tef.Dominio.Testes
             Assert.AreEqual(true, retorno != null);
         }
 
+        [TestMethod]
+        [TestCategory("AcTefDial")]
+        public void Testar_Requisicao_CNC()
+        {
+            var acTefDial = CriaAcTefDial();
+
+            acTefDial.Inicializa();
+
+            var retorno = acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
+
+            Assert.AreEqual(true, retorno != null);
+        }
+
         private static AcTefDial CriaAcTefDial()
         {
             var requisicao = new AcTefRequisicaoFake(new ConfigRequisicao());
@@ -29,6 +43,7 @@ namespace Tef.Dominio.Testes
                 "83838",
                 false, false, false, false
             ));
+
             return acTefDial;
         }
     }
