@@ -24,7 +24,19 @@ namespace Tef.Dominio.Testes
 
         public TefLinhaLista Enviar(TefLinhaLista requisicao)
         {
-            throw new NotImplementedException();
+            if (requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor == "ATV")
+            {
+                var resposta = new List<TefLinha>
+                {
+                    new TefLinha("000-000", requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor),
+                    new TefLinha("001-000", requisicao.BuscaLinha(AcTefIdentificadorCampos.Identificacao).Valor),
+                    new TefLinha("999-999", "0")
+                };
+
+                return new TefLinhaLista(resposta);
+            }
+
+            return null;
         }
 
         public void OnAguardandoResposta(AguardaRespostaEventArgs e)

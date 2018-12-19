@@ -13,7 +13,7 @@ namespace Tef.Dominio.Testes
                 
             });
 
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+            var acTefDial = new AcTefDial(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
@@ -21,6 +21,9 @@ namespace Tef.Dominio.Testes
                 false, false, false, false
                 ));
 
+            var retorno = acTefDial.Atv();
+
+            Assert.AreEqual(true, retorno != null);
         }
     }
 }
