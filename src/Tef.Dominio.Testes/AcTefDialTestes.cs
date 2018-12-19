@@ -9,10 +9,7 @@ namespace Tef.Dominio.Testes
         [TestCategory("AcTefDial")]
         public void Testar_Requisicao_ATV()
         {
-            var requisicao = new AcTefRequisicaoFake(new ConfigRequisicao
-            {
-
-            });
+            var requisicao = new AcTefRequisicaoFake(new ConfigRequisicao());
 
             var acTefDial = new AcTefDial(requisicao, new ConfigAcTefDial(
                 "teste",
