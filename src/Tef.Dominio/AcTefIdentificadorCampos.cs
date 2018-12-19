@@ -1,0 +1,73 @@
+﻿namespace Tef.Dominio
+{
+    public class AcTefIdentificadorCampos
+    {
+        public const int Comando = 000;
+        public const int Identificacao = 001;
+        public const int DocumentoFiscal = 002;
+        public const int ValorTotal = 003;
+        public const int Moeda = 004;
+        public const int EntidadeCliente = 006;
+        public const int IdentificadorCliente = 007;
+        public const int Status = 009;
+        public const int RedeAdquirente = 010;
+        public const int TipoTransacao = 011;
+        public const int Nsu = 012;
+        public const int CodigoAutorizacao = 013;
+        public const int TipoParcelamento = 017;
+        public const int QtdParcelas = 018;
+        public const int DataComprovante = 022;
+        public const int HoraComprovante = 023;
+        public const int DataPredatado = 024;
+        public const int NsuOriginal = 025;
+        public const int DataHoraRedeOriginal = 026;
+        public const int CodigoControle = 027;
+        public const int TamanhoViaUnica = 028;
+        public const int ViaUnicaComprovante = 029;
+        public const int MensagemOperador = 030;
+        public const int NomeCartaoOuAdministradora = 040;
+        public const int IndiceEstabelecimento = 702;
+        public const int CapacidadesAutomacao = 706;
+        public const int ValorOriginal = 707;
+        public const int ValorTroco = 708;
+        public const int ValorDesconto = 709;
+        public const int TamanhoCupomReduzido = 710;
+        public const int CupomReduzido = 711;
+        public const int TamanhoViaCliente = 712;
+        public const int ViaClienteComprovante = 713;
+        public const int TamanhoViaEstabelecimento = 714;
+        public const int ViaEstabelecimentoComprovante = 715;
+        public const int EmpresaAutomacao = 716;
+        public const int DataHoraFiscal = 717;
+        public const int NumeroLogicoTerminal = 718;
+        public const int CodigoEstabelecimento = 719;
+        public const int DadosAdicionais1 = 722;
+        public const int DadosAdicionais2 = 723;
+        public const int DadosAdicionais3 = 724;
+        public const int DadosAdicionais4 = 725;
+        public const int IdiomaCliente = 726;
+        public const int TaxaServico = 727;
+        public const int TaxaEmbarque = 728;
+        public const int StatusConfirmacao = 729;
+        public const int Operacao = 730;
+        public const int TipoCartao = 731;
+        public const int TipoFinanciamento = 732;
+        public const int VersaoInteface = 733;
+        public const int GrupoTransacoes = 734;
+        public const int NomeAutomacao = 735;
+        public const int VersaoAutomacao = 736;
+        public const int ViasComprovantes = 737;
+        public const int RegistroCertificacao = 738;
+        public const int IndiceRedeAdquirente = 739;
+        public const int NumeroCartao = 740;
+        public const int NomeCliente = 741;
+        public const int NomeProduto = 742;
+        public const int ValorDevido = 743;
+        public const int ValorReajustado = 744;
+        public const int NaoUtilizado = 745;
+        public const int NaoUtilizado2 = 746;
+        public const int DataVencimento = 747;
+        public const int NomeCartaoPadronizado = 748;
+        public const int RegistroFinalizador = 999;
+    }
+}

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BEB6365D-F769-4B60-817C-52D0B80771D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tef.Dominio</RootNamespace>
+    <AssemblyName>Tef.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcTefDial.cs" />
+    <Compile Include="AcTefDialHomologacao.cs" />
+    <Compile Include="AcTefException.cs" />
+    <Compile Include="AcTefIdentificadorCampos.cs" />
+    <Compile Include="AcTefResposta.cs" />
+    <Compile Include="AguardaRespostaEventArgs.cs" />
+    <Compile Include="Arquivo.cs" />
+    <Compile Include="AutorizaDfeEventArgs.cs" />
+    <Compile Include="Comparavel.cs" />
+    <Compile Include="ConfigAcTefDial.cs" />
+    <Compile Include="Conversores\ConverterRealEmCentavos.cs" />
+    <Compile Include="Entidade.cs" />
+    <Compile Include="Enums\FormaIdentificacaoCliente.cs" />
+    <Compile Include="Enums\Moeda.cs" />
+    <Compile Include="ExibeMensagemEventArgs.cs" />
+    <Compile Include="ExtTefLinhas.cs" />
+    <Compile Include="FabricarRequisicao.cs" />
+    <Compile Include="IAcTefRequisicao.cs" />
+    <Compile Include="IConfigAcTefDial.cs" />
+    <Compile Include="ImprimeViaEventArgs.cs" />
+    <Compile Include="ITef.cs" />
+    <Compile Include="Md5Helper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RespostaAdm.cs" />
+    <Compile Include="RespostaAtv.cs" />
+    <Compile Include="RespostaCnc.cs" />
+    <Compile Include="RespostaCrt.cs" />
+    <Compile Include="StatusAutorizacaoDfe.cs" />
+    <Compile Include="TefLinha.cs" />
+    <Compile Include="TefLinhaLista.cs" />
+    <Compile Include="ConfigRequisicao.cs" />
+    <Compile Include="ViaComprovante.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
