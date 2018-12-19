@@ -21,9 +21,9 @@ namespace Tef.Dominio
             var viaUnica = new TefLinhaLista(respostaRequisicaoAdm.Where(x => x.Identificacao == 029).ToList());
 
 
-            ViaEstabelecimento = viaEstabelecimento.GetRequisicao();
-            ViaCliente = viaCliente.GetRequisicao();
-            ViaUnica = viaUnica.GetRequisicao();
+            ViaEstabelecimento = viaEstabelecimento.GetValores();
+            ViaCliente = viaCliente.GetValores();
+            ViaUnica = viaUnica.GetValores();
             TefLinhaLista = respostaRequisicaoAdm;
         }
 

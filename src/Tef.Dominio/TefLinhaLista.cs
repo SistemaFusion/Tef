@@ -28,6 +28,18 @@ namespace Tef.Dominio
             return requisicao.ToArray();
         }
 
+        public string[] GetValores()
+        {
+            var valores = new List<string>();
+
+            foreach (var tefLinha in this.OrderBy(x => x.Identificacao))
+            {
+                valores.Add(tefLinha.Valor);
+            }
+
+            return valores.ToArray();
+        }
+
         public static TefLinhaLista LoadArquivo(string arquivo)
         {
             var listaDeLinhas = new TefLinhaLista();
