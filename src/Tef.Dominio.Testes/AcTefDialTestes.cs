@@ -3,14 +3,15 @@
 namespace Tef.Dominio.Testes
 {
     [TestClass]
-    public class AcTefDialTeste
+    public class AcTefDialTestes
     {
         [TestMethod]
-        public void TesteAtv()
+        [TestCategory("AcTefDial")]
+        public void Testar_Requisicao_ATV()
         {
             var requisicao = new AcTefRequisicaoFake(new ConfigRequisicao
             {
-                
+
             });
 
             var acTefDial = new AcTefDial(requisicao, new ConfigAcTefDial(
@@ -19,7 +20,9 @@ namespace Tef.Dominio.Testes
                 "nomeTesteAutomacao",
                 "83838",
                 false, false, false, false
-                ));
+            ));
+
+            acTefDial.Inicializa();
 
             var retorno = acTefDial.Atv();
 
