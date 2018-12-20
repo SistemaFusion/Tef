@@ -57,7 +57,12 @@
     <None Include="Assets\ArquivoCancelamentoCnc.001">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Assets\ArquivoSaqueAdm.001" />
+    <None Include="Assets\ArquivoSaqueAdm.001">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\ArquivoVenda10ReaisCrt.001">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

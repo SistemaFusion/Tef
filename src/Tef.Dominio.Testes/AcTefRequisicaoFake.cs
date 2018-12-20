@@ -9,6 +9,7 @@ namespace Tef.Dominio.Testes
     {
         private string _arquivoCancelamentoCnc;
         private string _arquivoSaqueAdm;
+        private string _arquivoVenda10ReaisCrt;
         private TefLinhaLista _requisicao;
 
         public AcTefRequisicaoFake(ConfigRequisicao configRequisicao)
@@ -18,6 +19,7 @@ namespace Tef.Dominio.Testes
 
             _arquivoCancelamentoCnc = $"{path}\\Assets\\ArquivoCancelamentoCnc.001";
             _arquivoSaqueAdm = $"{path}\\Assets\\ArquivoCancelamentoCnc.001";
+            _arquivoVenda10ReaisCrt = $"{path}\\Assets\\ArquivoVenda10ReaisCrt.001";
         }
 
         public event EventHandler<AguardaRespostaEventArgs> AguardandoResposta;
@@ -62,6 +64,11 @@ namespace Tef.Dominio.Testes
             if (_requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor == "ADM")
             {
                 AdicionaLinhasDeACordoComRequisicao(resposta, _arquivoSaqueAdm);
+            }
+
+            if (_requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor == "CRT")
+            {
+                AdicionaLinhasDeACordoComRequisicao(resposta, _arquivoVenda10ReaisCrt);
             }
 
             return new TefLinhaLista(resposta);

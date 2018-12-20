@@ -47,6 +47,19 @@ namespace Tef.Dominio.Testes
 
         [TestMethod]
         [TestCategory(nameof(AcTefDial))]
+        public void Testar_Requisicao_CRT()
+        {
+            var acTefDial = CriaAcTefDial();
+
+            acTefDial.Inicializa();
+
+            var retorno = acTefDial.Crt(10m, "98393");
+
+            Assert.AreEqual(true, retorno != null);
+        }
+
+        [TestMethod]
+        [TestCategory(nameof(AcTefDial))]
         [ExpectedException(typeof(AcTefException))]
         public void Testar_Operacao_Sem_Inicializar()
         {
