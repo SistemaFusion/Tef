@@ -8,11 +8,16 @@ namespace Tef.Dominio.Testes
     public class AcTefRequisicaoFake : IAcTefRequisicao
     {
         private string _arquivoCancelamentoCnc;
+        private string _arquivoSaqueAdm;
         private TefLinhaLista _requisicao;
 
         public AcTefRequisicaoFake(ConfigRequisicao configRequisicao)
         {
-            _arquivoCancelamentoCnc = $"{Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path))}\\Assets\\ArquivoCancelamentoCnc.001";
+            var path =
+                $"{Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path))}";
+
+            _arquivoCancelamentoCnc = $"{path}\\Assets\\ArquivoCancelamentoCnc.001";
+            _arquivoSaqueAdm = $"{path}\\Assets\\ArquivoCancelamentoCnc.001";
         }
 
         public event EventHandler<AguardaRespostaEventArgs> AguardandoResposta;
@@ -47,24 +52,32 @@ namespace Tef.Dominio.Testes
 
         public TefLinhaLista AguardaRespostaRequisicao()
         {
+            var resposta = new List<TefLinha>();
+
             if (_requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor == "CNC")
             {
-                var resposta = new List<TefLinha>();
-
-                using (var sr = new StreamReader(_arquivoCancelamentoCnc))
-                {
-                    var linha = string.Empty;
-
-                    while ((linha = sr.ReadLine()) != null)
-                    {
-                        resposta.Add(new TefLinha(linha));
-                    }
-                }
-
-                return new TefLinhaLista(resposta);
+                AdicionaLinhasDeACordoComRequisicao(resposta, _arquivoCancelamentoCnc);
             }
 
-            return null;
+            if (_requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando).Valor == "ADM")
+            {
+                AdicionaLinhasDeACordoComRequisicao(resposta, _arquivoSaqueAdm);
+            }
+
+            return new TefLinhaLista(resposta);
+        }
+
+        private void AdicionaLinhasDeACordoComRequisicao(List<TefLinha> resposta, string arquivo)
+        {
+            using (var sr = new StreamReader(arquivo))
+            {
+                var linha = string.Empty;
+
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    resposta.Add(new TefLinha(linha));
+                }
+            }
         }
 
         public void OnImprimirVia(ImprimeViaEventArgs e)
