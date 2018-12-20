@@ -60,6 +60,17 @@ namespace Tef.Dominio.Testes
 
         [TestMethod]
         [TestCategory(nameof(AcTefDial))]
+        public void Testar_Requisicao_NCN()
+        {
+            var acTefDial = CriaAcTefDial();
+
+            acTefDial.Inicializa();
+
+            acTefDial.Ncn("REDECARD", "17230215595");
+        }
+
+        [TestMethod]
+        [TestCategory(nameof(AcTefDial))]
         [ExpectedException(typeof(AcTefException))]
         public void Testar_Operacao_Sem_Inicializar()
         {
