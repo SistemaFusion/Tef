@@ -65,7 +65,7 @@ namespace Tef.Dominio.Testes
         {
             var acTefDial = CriaAcTefDial();
 
-            var retorno = acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
+            acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
         }
 
         private static AcTefDial CriaAcTefDial()
