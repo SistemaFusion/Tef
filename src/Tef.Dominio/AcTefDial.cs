@@ -120,10 +120,12 @@ namespace Tef.Dominio
             if (!Arquivo.Existe(_requisicao.ArquivoResposta)) return;
 
             var listaLinha = TefLinhaLista.LoadArquivo(_requisicao.ArquivoResposta);
-            Ncn(
+
+            if (listaLinha.RequerConfirmacao())
+                Ncn(
                 listaLinha.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
                 listaLinha.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor
-            );
+                );
         }
 
         protected virtual void VerificaInicializado()
