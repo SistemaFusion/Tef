@@ -99,7 +99,6 @@ namespace AppTesteTef
                 Console.Out.WriteLine(imagemComprovante);
             }
 
-            Thread.Sleep(3000);
             Console.Out.WriteLine(string.Empty);
             Console.Out.WriteLine(string.Empty);
             Console.Out.WriteLine("Via Cliente");
@@ -108,7 +107,6 @@ namespace AppTesteTef
                 Console.Out.WriteLine(imagemComprovante);
             }
 
-            Thread.Sleep(3000);
             Console.Out.WriteLine(string.Empty);
             Console.Out.WriteLine(string.Empty);
             Console.Out.WriteLine("Via Estabelecimento");
@@ -118,13 +116,37 @@ namespace AppTesteTef
             }
 
 
-            Thread.Sleep(3000);
             Console.Out.WriteLine(string.Empty);
             Console.Out.WriteLine(string.Empty);
             Console.Out.WriteLine("Via Reduzida");
             foreach (var imagemComprovante in e.ViaReduzida)
             {
                 Console.Out.WriteLine(imagemComprovante);
+            }
+
+
+            if (e.IsTemVia1)
+            {
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Via1");
+                foreach (var imagemComprovante in e.Via1)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
+            }
+
+            if (e.IsTemVia2)
+            {
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Via2");
+                foreach (var imagemComprovante in e.Via2)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
         }
 
