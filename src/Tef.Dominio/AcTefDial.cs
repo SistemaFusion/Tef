@@ -125,7 +125,7 @@ namespace Tef.Dominio
 
             var listaLinha = TefLinhaLista.LoadArquivo(_requisicao.ArquivoResposta);
 
-            if (listaLinha.RequerConfirmacao())
+            if (listaLinha.ConfereStatus())
                 Ncn(
                 listaLinha.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
                 listaLinha.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor
