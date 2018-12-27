@@ -32,6 +32,7 @@ namespace Tef.Dominio
                 && ViaUnica != null && ViaUnica.Length != 0)
             {
                 Via1 = ViaUnica;
+                return;
             }
 
 
