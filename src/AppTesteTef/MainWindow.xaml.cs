@@ -116,6 +116,16 @@ namespace AppTesteTef
             {
                 Console.Out.WriteLine(imagemComprovante);
             }
+
+
+            Thread.Sleep(3000);
+            Console.Out.WriteLine(string.Empty);
+            Console.Out.WriteLine(string.Empty);
+            Console.Out.WriteLine("Via Reduzida");
+            foreach (var imagemComprovante in e.ViaReduzida)
+            {
+                Console.Out.WriteLine(imagemComprovante);
+            }
         }
 
         private void Cnc_OnClick(object sender, RoutedEventArgs e)
