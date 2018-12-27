@@ -32,7 +32,7 @@
         public const int ValorTroco = 708;
         public const int ValorDesconto = 709;
         public const int TamanhoCupomReduzido = 710;
-        public const int CupomReduzido = 711;
+        public const int ViaReduzidaComprovante = 711;
         public const int TamanhoViaCliente = 712;
         public const int ViaClienteComprovante = 713;
         public const int TamanhoViaEstabelecimento = 714;
