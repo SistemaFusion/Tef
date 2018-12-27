@@ -1,4 +1,6 @@
-﻿namespace Tef.Dominio
+﻿using Tef.Dominio.Enums;
+
+namespace Tef.Dominio
 {
     public class AcTefDialHomologacao : AcTefDial
     {
@@ -40,7 +42,10 @@
             var autorizaDfeEventArgs = new AutorizaDfeEventArgs(respostaRequisicao);
             _requisicao.OnAutorizaDfe(autorizaDfeEventArgs);
 
-            if (respostaRequisicao.ConfereStatus())
+            var statusTransacao = respostaRequisicao.ConfereStatus();
+            var acTefStatus = statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
+
+            if (statusTransacao)
             {
                 if (autorizaDfeEventArgs.IsContemRejeicao() || autorizaDfeEventArgs.IsContemErro())
                 {
@@ -66,7 +71,7 @@
                 _requisicao.OnImprimirVia(new ImprimeViaEventArgs(respostaRequisicao));
             }
                
-            return new RespostaCrt(tefResposta, respostaRequisicao);
+            return new RespostaCrt(tefResposta, respostaRequisicao, acTefStatus);
         }
 
         protected override TefLinhaLista EfetuaRequisicao(TefLinhaLista requisicao, out TefLinhaLista respostaRequisicaoAdm)

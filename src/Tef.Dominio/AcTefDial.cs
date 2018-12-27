@@ -1,4 +1,5 @@
 ﻿using System;
+using Tef.Dominio.Enums;
 
 namespace Tef.Dominio
 {
@@ -71,7 +72,10 @@ namespace Tef.Dominio
 
             var respostaRequisicao = _requisicao.AguardaRespostaRequisicao();
 
-            return new RespostaCrt(tefResposta, respostaRequisicao);
+            var statusTransacao = respostaRequisicao.ConfereStatus();
+            var acTefStatus = statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
+
+            return new RespostaCrt(tefResposta, respostaRequisicao, acTefStatus);
         }
 
         protected virtual TefLinhaLista EfetuaRequisicao(TefLinhaLista requisicao, out TefLinhaLista respostaRequisicaoAdm)

@@ -48,6 +48,7 @@
     <Compile Include="ConfigAcTefDial.cs" />
     <Compile Include="Conversores\ConverterRealEmCentavos.cs" />
     <Compile Include="Entidade.cs" />
+    <Compile Include="Enums\AcTefStatus.cs" />
     <Compile Include="Enums\FormaIdentificacaoCliente.cs" />
     <Compile Include="Enums\Moeda.cs" />
     <Compile Include="ExibeMensagemEventArgs.cs" />
