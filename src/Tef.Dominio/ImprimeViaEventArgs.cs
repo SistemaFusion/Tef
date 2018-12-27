@@ -25,7 +25,45 @@ namespace Tef.Dominio
             ViaCliente = viaCliente.GetValores();
             ViaUnica = viaUnica.GetValores();
             TefLinhaLista = respostaRequisicaoAdm;
+
+
+            if ((ViaEstabelecimento == null || ViaEstabelecimento.Length == 0)
+                && (ViaCliente == null || ViaCliente.Length == 0) 
+                && ViaUnica != null && ViaUnica.Length != 0)
+            {
+                Via1 = ViaUnica;
+            }
+
+
+            if (ViaEstabelecimento != null && ViaCliente != null 
+                && ViaEstabelecimento.Length != 0 
+                && ViaCliente.Length != 0)
+            {
+                Via1 = viaCliente.GetValores();
+                Via2 = viaEstabelecimento.GetValores();
+                return;
+            }
+
+            if ((ViaEstabelecimento == null || ViaEstabelecimento.Length == 0) 
+                && ViaCliente != null && ViaCliente.Length != 0)
+            {
+                Via1 = ViaCliente;
+                Via2 = ViaUnica;
+                return;
+            }
+
+            if ((ViaCliente == null || ViaCliente.Length == 0)
+                && ViaEstabelecimento != null && ViaEstabelecimento.Length != 0)
+            {
+                Via1 = ViaUnica;
+                Via2 = ViaEstabelecimento;
+            }
+
         }
+
+
+        public string[] Via1 { get; }
+        public string[] Via2 { get; }
 
         public ViaComprovante ViaDeComprovante { get; } = ViaComprovante.NaoHaComprovante;
         public string[] ViaEstabelecimento { get; }
