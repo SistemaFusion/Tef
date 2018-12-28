@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>agil4.tef</id>
+    <version>0.0.0.8-beta</version>
+    <title>Tef</title>
+    <authors>Roberto</authors>
+    <owners>Roberto</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/SistemaFusion/Tef/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SistemaFusion/Tef</projectUrl>
+    <description>Solução para C# , para integração de TEF</description>
+  </metadata>
+  <files>
+    <file src="lib\net452\Tef.Dominio.dll" target="lib\net452\Tef.Dominio.dll" />
+    <file src="lib\net452\Tef.Infra.dll" target="lib\net452\Tef.Infra.dll" />
+  </files>
+</package>
