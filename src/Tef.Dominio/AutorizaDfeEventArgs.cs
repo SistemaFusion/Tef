@@ -4,7 +4,7 @@ namespace Tef.Dominio
 {
     public class AutorizaDfeEventArgs : EventArgs
     {
-        public StatusAutorizacaoDfe StatusAutorizacaoDfe { get; private set; }
+        public StatusAutorizacaoDfe StatusAutorizacaoDfe { get; private set; } = StatusAutorizacaoDfe.Autorizado;
 
         public TefLinhaLista TefLinhaLista { get; }
 

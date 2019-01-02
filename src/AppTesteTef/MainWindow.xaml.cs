@@ -200,7 +200,7 @@ namespace AppTesteTef
             requisicao.AguardandoResposta += AguardandoResposta;
             requisicao.ExibeMensagem += ExibeMensagemAction;
             requisicao.ImprimirVia += ImprimirViaAction;
-            requisicao.AutorizaDfe += AutorizaDfe;
+            //requisicao.AutorizaDfe += AutorizaDfe;
 
             var respostaAdm = acTefDial.Crt(10m, "98393");
 
