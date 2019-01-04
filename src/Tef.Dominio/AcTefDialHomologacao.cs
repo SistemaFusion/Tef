@@ -68,10 +68,15 @@ namespace Tef.Dominio
                 }
 
 
-                _requisicao.OnImprimirVia(new ImprimeViaEventArgs(respostaRequisicao));
+                ImprimirVias(respostaRequisicao);
             }
                
             return new RespostaCrt(tefResposta, respostaRequisicao, acTefStatus);
+        }
+
+        protected virtual void ImprimirVias(TefLinhaLista respostaRequisicao)
+        {
+            _requisicao.OnImprimirVia(new ImprimeViaEventArgs(respostaRequisicao));
         }
 
         protected override TefLinhaLista EfetuaRequisicao(TefLinhaLista requisicao, out TefLinhaLista respostaRequisicaoAdm)

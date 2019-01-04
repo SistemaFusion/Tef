@@ -56,6 +56,7 @@
     <Compile Include="FabricarRequisicao.cs" />
     <Compile Include="IAcTefRequisicao.cs" />
     <Compile Include="IConfigAcTefDial.cs" />
+    <Compile Include="IImprimeViaEventArgs.cs" />
     <Compile Include="ImprimeViaEventArgs.cs" />
     <Compile Include="ITef.cs" />
     <Compile Include="Md5Helper.cs" />
@@ -65,6 +66,8 @@
     <Compile Include="RespostaCnc.cs" />
     <Compile Include="RespostaCrt.cs" />
     <Compile Include="StatusAutorizacaoDfe.cs" />
+    <Compile Include="TefExpress.cs" />
+    <Compile Include="TefExpressImprimeViaEventArgs.cs" />
     <Compile Include="TefLinha.cs" />
     <Compile Include="TefLinhaLista.cs" />
     <Compile Include="ConfigRequisicao.cs" />

@@ -89,7 +89,7 @@ namespace AppTesteTef
             Console.Out.WriteLine(string.Empty);*/
         }
 
-        private void ImprimirViaAction(object sender, ImprimeViaEventArgs e)
+        private void ImprimirViaAction(object sender, IImprimeViaEventArgs e)
         {
             Console.Out.WriteLine(string.Empty);
             Console.Out.WriteLine(string.Empty);

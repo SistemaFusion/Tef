@@ -6,7 +6,7 @@ namespace Tef.Dominio
     public interface IAcTefRequisicao
     {
         event EventHandler<AguardaRespostaEventArgs> AguardandoResposta;
-        event EventHandler<ImprimeViaEventArgs> ImprimirVia;
+        event EventHandler<IImprimeViaEventArgs> ImprimirVia;
         event EventHandler<ExibeMensagemEventArgs> ExibeMensagem;
         event EventHandler<AutorizaDfeEventArgs> AutorizaDfe;
         string ArquivoTemporario { get; }
@@ -19,7 +19,7 @@ namespace Tef.Dominio
         TefLinhaLista Enviar(TefLinhaLista requisicao);
         void OnAguardandoResposta(AguardaRespostaEventArgs e);
         TefLinhaLista AguardaRespostaRequisicao();
-        void OnImprimirVia(ImprimeViaEventArgs e);
+        void OnImprimirVia(IImprimeViaEventArgs e);
         void OnExibeMensagem(ExibeMensagemEventArgs e);
         void OnAutorizaDfe(AutorizaDfeEventArgs e);
         List<string> BuscarCaminhosBackup();
