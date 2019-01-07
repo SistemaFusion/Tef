@@ -33,7 +33,7 @@ namespace Tef.Dominio
         }
 
         public TefLinhaLista TefLinhaLista { get; }
-        public ViaComprovante ViaDeComprovante { get; }
+        public ViaComprovante ViaDeComprovante { get; } = ViaComprovante.ViaClienteIEstabelecimento;
         public string[] ViaEstabelecimento { get; }
         public string[] ViaCliente { get; }
         public string[] ViaUnica { get; }
