@@ -22,6 +22,11 @@ namespace Tef.Dominio
             return tefLinhaLista.FirstOrDefault(resp => resp.Identificacao == identificacao);
         }
 
+        public static TefLinha BuscaLinha(this TefLinhaLista tefLinhaLista, int identificacao, int posicao)
+        {
+            return tefLinhaLista.FirstOrDefault(resp => resp.Identificacao == identificacao && resp.Posicao == posicao);
+        }
+
         public static bool RequerConfirmacao(this TefLinhaLista tefLinhaLista)
         {
             var statusConfirmacao = tefLinhaLista.FirstOrDefault(resp => resp.Identificacao == 729);

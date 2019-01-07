@@ -91,37 +91,49 @@ namespace AppTesteTef
 
         private void ImprimirViaAction(object sender, IImprimeViaEventArgs e)
         {
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Única");
-            foreach (var imagemComprovante in e.ViaUnica)
+            if (e.IsTemViaUnica)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Única");
+                foreach (var imagemComprovante in e.ViaUnica)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Cliente");
-            foreach (var imagemComprovante in e.ViaCliente)
+            if (e.IsTemViaCliente)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Cliente");
+                foreach (var imagemComprovante in e.ViaCliente)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Estabelecimento");
-            foreach (var imagemComprovante in e.ViaEstabelecimento)
+            if (e.IsTemViaEstabelecimento)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Estabelecimento");
+                foreach (var imagemComprovante in e.ViaEstabelecimento)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
 
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Reduzida");
-            foreach (var imagemComprovante in e.ViaReduzida)
+            if (e.IsTemViaReduzida)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Reduzida");
+                foreach (var imagemComprovante in e.ViaReduzida)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
 
@@ -187,7 +199,7 @@ namespace AppTesteTef
         private void Crt_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
