@@ -6,6 +6,7 @@ namespace Tef.Dominio
     {
         public TefExpressImprimeViaEventArgs(TefLinhaLista respostaRequisicaoAdm)
         {
+            // FEITO ESSE IF DEBUG SOMENTE PORQUE O SIMULADOR NA OPERAÇÃO CRT NÃO RETORNA O CAMPO 028-001, EM PRODUÇÃO O MESMO EXISTE
             #if DEBUG
                 var campo028001 = respostaRequisicaoAdm.BuscaLinha(AcTefIdentificadorCampos.TamanhoViaUnica, 1);
                 if (campo028001 == null)
