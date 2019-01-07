@@ -56,7 +56,7 @@ namespace AppTesteTef
         private void Adm_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
@@ -72,21 +72,6 @@ namespace AppTesteTef
 
             var respostaAdm = acTefDial.Adm();
 
-            /*if (respostaAdm == null) return;
-
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Resposta ADM");
-            foreach (var tefLinha in respostaAdm.Resposta)
-            {
-                Console.Out.WriteLine(tefLinha);
-            }
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);*/
         }
 
         private void ImprimirViaAction(object sender, IImprimeViaEventArgs e)

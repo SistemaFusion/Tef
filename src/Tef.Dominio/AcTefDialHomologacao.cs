@@ -1,4 +1,5 @@
-﻿using Tef.Dominio.Enums;
+﻿using System;
+using Tef.Dominio.Enums;
 
 namespace Tef.Dominio
 {
@@ -19,6 +20,16 @@ namespace Tef.Dominio
             var tefResposta = EfetuaRequisicao(requisicao, out var respostaRequisicaoAdm);
 
             return new RespostaAdm(tefResposta, respostaRequisicaoAdm);
+        }
+
+        public override RespostaCnc Cnc(string rede, string nsu, DateTime transacaoEm, decimal valor)
+        {
+            VerificaInicializado();
+            var requisicao = FabricarRequisicao.MontaRequisicaoCnc(IdRequisicao, rede, nsu, transacaoEm, valor, _configAcTefDial);
+
+            var tefResposta = EfetuaRequisicao(requisicao, out var respostaRequisicao);
+
+            return new RespostaCnc(tefResposta, respostaRequisicao);
         }
 
         public override RespostaCrt Crt(decimal valor, string documentoVinculado)
@@ -42,7 +53,7 @@ namespace Tef.Dominio
             var autorizaDfeEventArgs = new AutorizaDfeEventArgs(respostaRequisicao);
             _requisicao.OnAutorizaDfe(autorizaDfeEventArgs);
 
-            var statusTransacao = respostaRequisicao.ConfereStatus();
+            var statusTransacao = ConfereStatus(respostaRequisicao);
             var acTefStatus = statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
 
             if (statusTransacao)
@@ -88,7 +99,7 @@ namespace Tef.Dominio
 
             _requisicao.OnExibeMensagem(new ExibeMensagemEventArgs(respostaRequisicaoAdm));
 
-            if (respostaRequisicaoAdm.ConfereStatus())
+            if (ConfereStatus(respostaRequisicaoAdm))
             {
                 if (respostaRequisicaoAdm.RequerConfirmacao())
                 {
@@ -101,11 +112,15 @@ namespace Tef.Dominio
                     );
                 }
 
-
-                _requisicao.OnImprimirVia(new ImprimeViaEventArgs(respostaRequisicaoAdm));
+                ImprimirVias(respostaRequisicaoAdm);
             }
 
             return tefResposta;
+        }
+
+        protected virtual bool ConfereStatus(TefLinhaLista respostaRequisicaoAdm)
+        {
+            return respostaRequisicaoAdm.ConfereStatus();
         }
     }
 }
