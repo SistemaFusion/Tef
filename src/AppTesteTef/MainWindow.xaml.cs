@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Windows;
 using Tef.Dominio;
 using Tef.Infra;
