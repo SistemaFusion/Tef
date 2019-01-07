@@ -149,7 +149,7 @@ namespace AppTesteTef
         private void Cnc_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
