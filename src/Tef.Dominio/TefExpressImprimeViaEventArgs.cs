@@ -22,6 +22,9 @@ namespace Tef.Dominio
 
             ViaCliente = viaCliente.GetValores();
             ViaEstabelecimento = viaEstabelecimento.GetValores();
+
+            Via1 = ViaCliente;
+            Via2 = ViaEstabelecimento;
         }
 
         public TefLinhaLista TefLinhaLista { get; }
