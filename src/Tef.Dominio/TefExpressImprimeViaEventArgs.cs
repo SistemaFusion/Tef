@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 
 namespace Tef.Dominio
 {
@@ -7,8 +8,12 @@ namespace Tef.Dominio
         public TefExpressImprimeViaEventArgs(TefLinhaLista respostaRequisicaoAdm)
         {
             #if DEBUG
-                respostaRequisicaoAdm.Add(new TefLinha("028-001", 12));
-                respostaRequisicaoAdm = new TefLinhaLista(respostaRequisicaoAdm.OrderBy(x => x.Identificacao).ToList());
+                var campo028001 = respostaRequisicaoAdm.BuscaLinha(AcTefIdentificadorCampos.TamanhoViaUnica, 1);
+                if (campo028001 == null)
+                {
+                    respostaRequisicaoAdm.Add(new TefLinha("028-001", 12));
+                    respostaRequisicaoAdm = new TefLinhaLista(respostaRequisicaoAdm.OrderBy(x => x.Identificacao).ToList());
+                }
             #endif
 
             var tamanhoPrimeiraVia = respostaRequisicaoAdm.BuscaLinha(AcTefIdentificadorCampos.TamanhoViaUnica, 1);
