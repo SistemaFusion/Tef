@@ -30,7 +30,7 @@ namespace AppTesteTef
                 "versaoTeste",
                 "nomeTesteAutomacao",
                 "83838",
-                false, false, false, false
+                true, true, true, true
             );
 
             var iTef = Tef.Dominio.FabricaOperadora.RetornaOperadora(_operadora, requisicao, configuracao);
