@@ -60,6 +60,7 @@
     <Compile Include="ImprimeViaEventArgs.cs" />
     <Compile Include="ITef.cs" />
     <Compile Include="Md5Helper.cs" />
+    <Compile Include="PayGO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RespostaAdm.cs" />
     <Compile Include="RespostaAtv.cs" />
