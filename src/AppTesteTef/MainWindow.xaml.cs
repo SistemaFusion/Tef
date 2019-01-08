@@ -55,7 +55,7 @@ namespace AppTesteTef
         private void Adm_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
+            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
@@ -149,7 +149,7 @@ namespace AppTesteTef
         private void Cnc_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
+            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
@@ -183,7 +183,7 @@ namespace AppTesteTef
         private void Crt_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
+            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",

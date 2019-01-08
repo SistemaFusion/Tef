@@ -44,6 +44,7 @@
     <Compile Include="AguardaRespostaEventArgs.cs" />
     <Compile Include="Arquivo.cs" />
     <Compile Include="AutorizaDfeEventArgs.cs" />
+    <Compile Include="Cappta.cs" />
     <Compile Include="Comparavel.cs" />
     <Compile Include="ConfigAcTefDial.cs" />
     <Compile Include="Conversores\ConverterRealEmCentavos.cs" />
