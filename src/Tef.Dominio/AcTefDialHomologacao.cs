@@ -3,7 +3,7 @@ using Tef.Dominio.Enums;
 
 namespace Tef.Dominio
 {
-    public class AcTefDialHomologacao : AcTefDial
+    internal class AcTefDialHomologacao : AcTefDial
     {
         public AcTefDialHomologacao(
             IAcTefRequisicao requisicao,

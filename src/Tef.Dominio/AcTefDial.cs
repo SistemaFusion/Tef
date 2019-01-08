@@ -3,7 +3,7 @@ using Tef.Dominio.Enums;
 
 namespace Tef.Dominio
 {
-    public class AcTefDial : ITef
+    internal class AcTefDial : ITef
     {
         protected virtual string NomeAutomacaoComercial { get; }
         protected virtual string NomeAplicativoComercial { get; }
