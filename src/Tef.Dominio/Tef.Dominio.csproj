@@ -52,8 +52,10 @@
     <Compile Include="Enums\AcTefStatus.cs" />
     <Compile Include="Enums\FormaIdentificacaoCliente.cs" />
     <Compile Include="Enums\Moeda.cs" />
+    <Compile Include="Enums\Operadora.cs" />
     <Compile Include="ExibeMensagemEventArgs.cs" />
     <Compile Include="ExtTefLinhas.cs" />
+    <Compile Include="FabricaOperadora.cs" />
     <Compile Include="FabricarRequisicao.cs" />
     <Compile Include="IAcTefRequisicao.cs" />
     <Compile Include="IConfigAcTefDial.cs" />
