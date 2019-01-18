@@ -40,7 +40,7 @@ namespace AppTesteTef
         {
             var acTefDial = FabricaOperadora();
 
-            var respostaAdm = acTefDial.Crt(10m, "98393");
+            var respostaAdm = acTefDial.Crt(10.00m, "98393");
         }
 
         private ITef FabricaOperadora()
