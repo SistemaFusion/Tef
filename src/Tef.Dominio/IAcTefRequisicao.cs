@@ -16,7 +16,7 @@ namespace Tef.Dominio
         string ArquivoSts { get; }
         int EsperaSleep { get; }
         int EsperaSts { get; }
-        TefLinhaLista Enviar(TefLinhaLista requisicao);
+        TefLinhaLista Enviar(TefLinhaLista requisicao, ITef tef);
         void OnAguardandoResposta(AguardaRespostaEventArgs e);
         TefLinhaLista AguardaRespostaRequisicao();
         void OnImprimirVia(IImprimeViaEventArgs e);

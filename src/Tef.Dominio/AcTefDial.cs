@@ -31,7 +31,7 @@ namespace Tef.Dominio
         public virtual RespostaAtv Atv()
         {
             VerificaInicializado();
-            var tefResposta = _requisicao.Enviar(FabricarRequisicao.MontaRequisicaoAtv(IdRequisicao, _configAcTefDial));
+            var tefResposta = _requisicao.Enviar(FabricarRequisicao.MontaRequisicaoAtv(IdRequisicao, _configAcTefDial), this);
 
             return new RespostaAtv(tefResposta);
         }
@@ -68,7 +68,7 @@ namespace Tef.Dominio
                 _configAcTefDial);
 
 
-            var tefResposta = _requisicao.Enviar(requisicao);
+            var tefResposta = _requisicao.Enviar(requisicao, this);
 
             var respostaRequisicao = _requisicao.AguardaRespostaRequisicao();
 
@@ -80,7 +80,7 @@ namespace Tef.Dominio
 
         protected virtual TefLinhaLista EfetuaRequisicao(TefLinhaLista requisicao, out TefLinhaLista respostaRequisicaoAdm)
         {
-            var tefResposta = _requisicao.Enviar(requisicao);
+            var tefResposta = _requisicao.Enviar(requisicao, this);
 
             respostaRequisicaoAdm = _requisicao.AguardaRespostaRequisicao();
 
@@ -103,13 +103,13 @@ namespace Tef.Dominio
                 nomeAutomacao,
                 versaoAutomacao,
                 registroCertificacao
-            ));
+            ), this);
         }
 
         public virtual void Ncn(string redeAdquirente, string codigoControle)
         {
             VerificaInicializado();
-            _requisicao.Enviar(FabricarRequisicao.MontaRequisicaoNcn(IdRequisicao, redeAdquirente, RegistroCertificacao, codigoControle));
+            _requisicao.Enviar(FabricarRequisicao.MontaRequisicaoNcn(IdRequisicao, redeAdquirente, RegistroCertificacao, codigoControle), this);
         }
 
 

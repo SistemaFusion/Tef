@@ -34,8 +34,13 @@ namespace Tef.Infra
             ArquivoSts = configuracao.ArquivoSts;
         }
 
-        public TefLinhaLista Enviar(TefLinhaLista requisicao)
+        public TefLinhaLista Enviar(TefLinhaLista requisicao, ITef tef)
         {
+            if (requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando)?.Valor != "ATV")
+            {
+                tef.Atv();
+            }
+
             CriaRequisicao(requisicao);
 
             EfetuaRequisicao();
