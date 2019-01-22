@@ -34,7 +34,7 @@ namespace Tef.Dominio.Testes
         public int EsperaSleep { get; }
         public int EsperaSts { get; }
 
-        public TefLinhaLista Enviar(TefLinhaLista requisicao, ITef tef)
+        public TefLinhaLista Enviar(TefLinhaLista requisicao, IRequisicaoAtv requisicaoAtv)
         {
             _requisicao = requisicao;
             var resposta = new List<TefLinha>

@@ -61,6 +61,7 @@
     <Compile Include="IConfigAcTefDial.cs" />
     <Compile Include="IImprimeViaEventArgs.cs" />
     <Compile Include="ImprimeViaEventArgs.cs" />
+    <Compile Include="IRequisicaoAtv.cs" />
     <Compile Include="ITef.cs" />
     <Compile Include="Md5Helper.cs" />
     <Compile Include="PayGO.cs" />

@@ -136,5 +136,13 @@ namespace Tef.Dominio
         {
             AcTefException.Quando(Inicializado == false, "Inicializar AcTef TEF!");
         }
+
+        public void VerificaSeTefEstaAtivo(TefLinhaLista requisicao)
+        {
+            if (requisicao.BuscaLinha(AcTefIdentificadorCampos.Comando)?.Valor != "ATV")
+            {
+                Atv();
+            }
+        }
     }
 }
