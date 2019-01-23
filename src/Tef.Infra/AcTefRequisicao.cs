@@ -39,7 +39,9 @@ namespace Tef.Infra
         {
             requisicaoAtv.VerificaSeTefEstaAtivo(requisicao);
 
-            OnAntesRequisicao(new AntesRequisicaoEventArgs(requisicao));
+            var antesRequisicao = new AntesRequisicaoEventArgs(requisicao);
+            OnAntesRequisicao(antesRequisicao);
+            requisicao = antesRequisicao.Requisicao;
 
             CriaRequisicao(requisicao);
 
