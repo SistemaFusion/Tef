@@ -42,6 +42,7 @@
     <Compile Include="AcTefIdentificadorCampos.cs" />
     <Compile Include="AcTefResposta.cs" />
     <Compile Include="AguardaRespostaEventArgs.cs" />
+    <Compile Include="AntesRequisicaoEventArgs.cs" />
     <Compile Include="Arquivo.cs" />
     <Compile Include="AutorizaDfeEventArgs.cs" />
     <Compile Include="Cappta.cs" />

@@ -9,6 +9,7 @@ namespace Tef.Dominio
         event EventHandler<IImprimeViaEventArgs> ImprimirVia;
         event EventHandler<ExibeMensagemEventArgs> ExibeMensagem;
         event EventHandler<AutorizaDfeEventArgs> AutorizaDfe;
+        event EventHandler<AntesRequisicaoEventArgs> AntesRequisicao;
         string ArquivoTemporario { get; }
         string ArquivoRequisicao { get; }
         string ArquivoResposta { get; }
@@ -22,6 +23,7 @@ namespace Tef.Dominio
         void OnImprimirVia(IImprimeViaEventArgs e);
         void OnExibeMensagem(ExibeMensagemEventArgs e);
         void OnAutorizaDfe(AutorizaDfeEventArgs e);
+        void OnAntesRequisicao(AntesRequisicaoEventArgs antesRequisicaoEventArgs);
         List<string> BuscarCaminhosBackup();
     }
 }
