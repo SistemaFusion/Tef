@@ -23,7 +23,7 @@ namespace Tef.Dominio.Testes
         }
 
         public event EventHandler<AguardaRespostaEventArgs> AguardandoResposta;
-        public event EventHandler<ImprimeViaEventArgs> ImprimirVia;
+        public event EventHandler<IImprimeViaEventArgs> ImprimirVia;
         public event EventHandler<ExibeMensagemEventArgs> ExibeMensagem;
         public event EventHandler<AutorizaDfeEventArgs> AutorizaDfe;
         public string ArquivoTemporario { get; }
@@ -87,7 +87,7 @@ namespace Tef.Dominio.Testes
             }
         }
 
-        public void OnImprimirVia(ImprimeViaEventArgs e)
+        public void OnImprimirVia(IImprimeViaEventArgs e)
         {
             throw new NotImplementedException();
         }

@@ -7,6 +7,7 @@ namespace Tef.Dominio
         public string Chave { get; }
         public string Valor { get; }
         public int Identificacao { get; }
+        public int Posicao { get; }
 
         public TefLinha(string chave, string valor)
         {
@@ -14,6 +15,7 @@ namespace Tef.Dominio
             Valor = valor;
 
             Identificacao = int.Parse(Chave.Split('-')[0]);
+            Posicao = int.Parse(Chave.Split('-')[1]);
         }
 
         public TefLinha(string chave, int valor) : this(chave, valor.ToString()) { }
@@ -28,6 +30,7 @@ namespace Tef.Dominio
             Valor = linhas[1].Trim();
 
             Identificacao = int.Parse(linhas[0].Split('-')[0]);
+            Posicao = int.Parse(linhas[0].Split('-')[1]);
         }
 
         public override string ToString()

@@ -9,7 +9,7 @@ namespace Tef.Infra
     public class AcTefRequisicao : IAcTefRequisicao
     {
         public event EventHandler<AguardaRespostaEventArgs> AguardandoResposta;
-        public event EventHandler<ImprimeViaEventArgs> ImprimirVia;
+        public event EventHandler<IImprimeViaEventArgs> ImprimirVia;
         public event EventHandler<ExibeMensagemEventArgs> ExibeMensagem;
         public event EventHandler<AutorizaDfeEventArgs> AutorizaDfe;
 
@@ -122,7 +122,7 @@ namespace Tef.Infra
             AguardandoResposta?.Invoke(this, e);
         }
 
-        public virtual void OnImprimirVia(ImprimeViaEventArgs e)
+        public virtual void OnImprimirVia(IImprimeViaEventArgs e)
         {
             ImprimirVia?.Invoke(this, e);
         }

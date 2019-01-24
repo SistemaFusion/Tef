@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Tef.Dominio
 {
-    public class ImprimeViaEventArgs : EventArgs
+    public class ImprimeViaEventArgs : EventArgs, IImprimeViaEventArgs
     {
         public ImprimeViaEventArgs(TefLinhaLista respostaRequisicaoAdm)
         {

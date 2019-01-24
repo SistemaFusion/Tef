@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Windows;
 using Tef.Dominio;
 using Tef.Infra;
@@ -56,7 +55,7 @@ namespace AppTesteTef
         private void Adm_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
@@ -72,56 +71,53 @@ namespace AppTesteTef
 
             var respostaAdm = acTefDial.Adm();
 
-            /*if (respostaAdm == null) return;
-
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Resposta ADM");
-            foreach (var tefLinha in respostaAdm.Resposta)
-            {
-                Console.Out.WriteLine(tefLinha);
-            }
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);*/
         }
 
-        private void ImprimirViaAction(object sender, ImprimeViaEventArgs e)
+        private void ImprimirViaAction(object sender, IImprimeViaEventArgs e)
         {
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Única");
-            foreach (var imagemComprovante in e.ViaUnica)
+            if (e.IsTemViaUnica)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Única");
+                foreach (var imagemComprovante in e.ViaUnica)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Cliente");
-            foreach (var imagemComprovante in e.ViaCliente)
+            if (e.IsTemViaCliente)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Cliente");
+                foreach (var imagemComprovante in e.ViaCliente)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Estabelecimento");
-            foreach (var imagemComprovante in e.ViaEstabelecimento)
+            if (e.IsTemViaEstabelecimento)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Estabelecimento");
+                foreach (var imagemComprovante in e.ViaEstabelecimento)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
 
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Via Reduzida");
-            foreach (var imagemComprovante in e.ViaReduzida)
+            if (e.IsTemViaReduzida)
             {
-                Console.Out.WriteLine(imagemComprovante);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine(string.Empty);
+                Console.Out.WriteLine("Via Reduzida");
+                foreach (var imagemComprovante in e.ViaReduzida)
+                {
+                    Console.Out.WriteLine(imagemComprovante);
+                }
             }
 
 
@@ -153,7 +149,7 @@ namespace AppTesteTef
         private void Cnc_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
@@ -187,7 +183,7 @@ namespace AppTesteTef
         private void Crt_OnClick(object sender, RoutedEventArgs e)
         {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
