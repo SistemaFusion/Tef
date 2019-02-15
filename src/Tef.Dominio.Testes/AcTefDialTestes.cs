@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tef.Dominio.Enums;
 
 namespace Tef.Dominio.Testes
 {
@@ -7,7 +8,7 @@ namespace Tef.Dominio.Testes
     public class AcTefDialTestes
     {
         [TestMethod]
-        [TestCategory(nameof(AcTefDial))]
+        [TestCategory("AcTefDial")]
         public void Testar_Requisicao_ATV()
         {
             var acTefDial = CriaAcTefDial();
@@ -20,7 +21,7 @@ namespace Tef.Dominio.Testes
         }
 
         [TestMethod]
-        [TestCategory(nameof(AcTefDial))]
+        [TestCategory("AcTefDial")]
         public void Testar_Requisicao_CNC()
         {
             var acTefDial = CriaAcTefDial();
@@ -33,7 +34,7 @@ namespace Tef.Dominio.Testes
         }
 
         [TestMethod]
-        [TestCategory(nameof(AcTefDial))]
+        [TestCategory("AcTefDial")]
         public void Testar_Requisicao_ADM()
         {
             var acTefDial = CriaAcTefDial();
@@ -46,7 +47,7 @@ namespace Tef.Dominio.Testes
         }
 
         [TestMethod]
-        [TestCategory(nameof(AcTefDial))]
+        [TestCategory("AcTefDial")]
         public void Testar_Requisicao_CRT()
         {
             var acTefDial = CriaAcTefDial();
@@ -59,7 +60,7 @@ namespace Tef.Dominio.Testes
         }
 
         [TestMethod]
-        [TestCategory(nameof(AcTefDial))]
+        [TestCategory("AcTefDial")]
         public void Testar_Requisicao_NCN()
         {
             var acTefDial = CriaAcTefDial();
@@ -70,7 +71,7 @@ namespace Tef.Dominio.Testes
         }
 
         [TestMethod]
-        [TestCategory(nameof(AcTefDial))]
+        [TestCategory("AcTefDial")]
         [ExpectedException(typeof(AcTefException))]
         public void Testar_Operacao_Sem_Inicializar()
         {
@@ -79,19 +80,21 @@ namespace Tef.Dominio.Testes
             acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
         }
 
-        private static AcTefDial CriaAcTefDial()
+        private static ITef CriaAcTefDial()
         {
             var requisicao = new AcTefRequisicaoFake(new ConfigRequisicao());
-
-            var acTefDial = new AcTefDial(requisicao, new ConfigAcTefDial(
+            var configuracao = new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
                 "83838",
                 false, false, false, false
-            ));
+            );
 
-            return acTefDial;
+
+            var iTef = FabricaOperadora.RetornaOperadora(Operadora.TefDial, requisicao, configuracao);
+
+            return iTef;
         }
     }
 }

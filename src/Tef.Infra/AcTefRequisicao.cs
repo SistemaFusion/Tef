@@ -12,6 +12,7 @@ namespace Tef.Infra
         public event EventHandler<IImprimeViaEventArgs> ImprimirVia;
         public event EventHandler<ExibeMensagemEventArgs> ExibeMensagem;
         public event EventHandler<AutorizaDfeEventArgs> AutorizaDfe;
+        public event EventHandler<AntesRequisicaoEventArgs> AntesRequisicao;
 
         public string ArquivoTemporario { get; }
         public string ArquivoRequisicao { get; }
@@ -34,8 +35,14 @@ namespace Tef.Infra
             ArquivoSts = configuracao.ArquivoSts;
         }
 
-        public TefLinhaLista Enviar(TefLinhaLista requisicao)
+        public TefLinhaLista Enviar(TefLinhaLista requisicao, IRequisicaoAtv requisicaoAtv)
         {
+            requisicaoAtv.VerificaSeTefEstaAtivo(requisicao);
+
+            var antesRequisicao = new AntesRequisicaoEventArgs(requisicao);
+            OnAntesRequisicao(antesRequisicao);
+            requisicao = antesRequisicao.Requisicao;
+
             CriaRequisicao(requisicao);
 
             EfetuaRequisicao();
@@ -135,6 +142,11 @@ namespace Tef.Infra
         public void OnAutorizaDfe(AutorizaDfeEventArgs e)
         {
             AutorizaDfe?.Invoke(this, e);
+        }
+
+        public void OnAntesRequisicao(AntesRequisicaoEventArgs antesRequisicaoEventArgs)
+        {
+            AntesRequisicao?.Invoke(this, antesRequisicaoEventArgs);
         }
 
         private void EfetuarBackup(TefLinhaLista tefLinhaLista)

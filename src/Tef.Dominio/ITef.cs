@@ -2,7 +2,7 @@
 
 namespace Tef.Dominio
 {
-    public interface ITef
+    public interface ITef : IRequisicaoAtv
     {
         RespostaAtv Atv();
         RespostaAdm Adm();

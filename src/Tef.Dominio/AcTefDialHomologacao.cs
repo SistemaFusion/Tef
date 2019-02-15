@@ -3,7 +3,7 @@ using Tef.Dominio.Enums;
 
 namespace Tef.Dominio
 {
-    public class AcTefDialHomologacao : AcTefDial
+    internal class AcTefDialHomologacao : AcTefDial
     {
         public AcTefDialHomologacao(
             IAcTefRequisicao requisicao,
@@ -44,7 +44,7 @@ namespace Tef.Dominio
                 _configAcTefDial);
 
 
-            var tefResposta = _requisicao.Enviar(requisicao);
+            var tefResposta = _requisicao.Enviar(requisicao, this);
 
             var respostaRequisicao = _requisicao.AguardaRespostaRequisicao();
 
@@ -92,7 +92,7 @@ namespace Tef.Dominio
 
         protected override TefLinhaLista EfetuaRequisicao(TefLinhaLista requisicao, out TefLinhaLista respostaRequisicaoAdm)
         {
-            var tefResposta = _requisicao.Enviar(requisicao);
+            var tefResposta = _requisicao.Enviar(requisicao, this);
 
             respostaRequisicaoAdm = _requisicao.AguardaRespostaRequisicao();
 

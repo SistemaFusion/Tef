@@ -26,6 +26,7 @@ namespace Tef.Dominio.Testes
         public event EventHandler<IImprimeViaEventArgs> ImprimirVia;
         public event EventHandler<ExibeMensagemEventArgs> ExibeMensagem;
         public event EventHandler<AutorizaDfeEventArgs> AutorizaDfe;
+        public event EventHandler<AntesRequisicaoEventArgs> AntesRequisicao;
         public string ArquivoTemporario { get; }
         public string ArquivoRequisicao { get; }
         public string ArquivoResposta { get; }
@@ -34,7 +35,7 @@ namespace Tef.Dominio.Testes
         public int EsperaSleep { get; }
         public int EsperaSts { get; }
 
-        public TefLinhaLista Enviar(TefLinhaLista requisicao)
+        public TefLinhaLista Enviar(TefLinhaLista requisicao, IRequisicaoAtv requisicaoAtv)
         {
             _requisicao = requisicao;
             var resposta = new List<TefLinha>
@@ -100,6 +101,11 @@ namespace Tef.Dominio.Testes
         public void OnAutorizaDfe(AutorizaDfeEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        public void OnAntesRequisicao(AntesRequisicaoEventArgs antesRequisicaoEventArgs)
+        {
+            
         }
 
         public List<string> BuscarCaminhosBackup()

@@ -1,6 +1,6 @@
 ﻿namespace Tef.Dominio
 {
-    public class TefExpress : AcTefDialHomologacao
+    internal class TefExpress : AcTefDialHomologacao
     {
         public TefExpress(IAcTefRequisicao requisicao, IConfigAcTefDial configAcTefDial) : base(requisicao, configAcTefDial)
         {

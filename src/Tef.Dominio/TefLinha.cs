@@ -24,7 +24,7 @@ namespace Tef.Dominio
 
         public TefLinha(string linha)
         {
-            var linhas = linha.Split('=');
+            var linhas = linha.Split(new[] { '=' }, 2);
 
             Chave = linhas[0].Trim();
             Valor = linhas[1].Trim();

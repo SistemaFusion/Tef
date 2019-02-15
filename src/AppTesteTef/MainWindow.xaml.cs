@@ -1,49 +1,70 @@
 ﻿using System;
 using System.Windows;
 using Tef.Dominio;
+using Tef.Dominio.Enums;
 using Tef.Infra;
 
 namespace AppTesteTef
 {
     public partial class MainWindow
     {
+        private readonly Operadora _operadora;
+
         public MainWindow()
         {
             InitializeComponent();
+            _operadora = Operadora.Cappta;
         }
 
         private void Atv_OnClick(object sender, RoutedEventArgs e)
         {
+            var acTefDial = FabricaOperadora();
+            var respostaAtv = acTefDial.Atv();
+        }
+
+        private void Adm_OnClick(object sender, RoutedEventArgs e)
+        {
+            var acTefDial = FabricaOperadora();
+
+            var respostaAdm = acTefDial.Adm();
+        }
+
+        private void Cnc_OnClick(object sender, RoutedEventArgs e)
+        {
+            var acTefDial = FabricaOperadora();
+
+            var respostaAdm = acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
+        }
+
+        private void Crt_OnClick(object sender, RoutedEventArgs e)
+        {
+            var acTefDial = FabricaOperadora();
+
+            var respostaAdm = acTefDial.Crt(10.00m, "98393");
+        }
+
+        private ITef FabricaOperadora()
+        {
             var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new AcTefDialHomologacao(requisicao, new ConfigAcTefDial(
+
+            requisicao.AguardandoResposta += AguardandoResposta;
+            requisicao.ExibeMensagem += ExibeMensagemAction;
+            requisicao.ImprimirVia += ImprimirViaAction;
+            //requisicao.AutorizaDfe += AutorizaDfe;
+
+            var configuracao = new ConfigAcTefDial(
                 "teste",
                 "versaoTeste",
                 "nomeTesteAutomacao",
                 "83838",
-                false, false, false, false
-            ));
+                true, true, true, true
+            );
 
-            acTefDial.Inicializa();
+            var iTef = Tef.Dominio.FabricaOperadora.RetornaOperadora(_operadora, requisicao, configuracao);
 
-            requisicao.AguardandoResposta += AguardandoResposta;
+            iTef.Inicializa();
 
-            var respostaAtv = acTefDial.Atv();
-
-            Console.Out.WriteLine("Resposta ATV");
-            Console.Out.WriteLine(respostaAtv.Header);
-            Console.Out.WriteLine(respostaAtv.Identificadao);
-
-            foreach (var linha in respostaAtv.TefLinhaLista)
-            {
-                Console.Out.WriteLine(linha);
-            }
-
-            Console.Out.WriteLine("Fim resposta ATV");
-        }
-
-        private void ExibeMensagemAction(object sender, ExibeMensagemEventArgs e)
-        {
-            Console.Out.WriteLine(e.Mensagem);
+            return iTef;
         }
 
         private void AguardandoResposta(object sender, AguardaRespostaEventArgs e)
@@ -52,25 +73,9 @@ namespace AppTesteTef
             Console.Out.WriteLine($"Segundos: {e.Segundos}");
         }
 
-        private void Adm_OnClick(object sender, RoutedEventArgs e)
+        private void ExibeMensagemAction(object sender, ExibeMensagemEventArgs e)
         {
-            var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
-                "teste",
-                "versaoTeste",
-                "nomeTesteAutomacao",
-                "83838",
-                false, false, false, false
-            ));
-
-            acTefDial.Inicializa();
-
-            requisicao.AguardandoResposta += AguardandoResposta;
-            requisicao.ExibeMensagem += ExibeMensagemAction;
-            requisicao.ImprimirVia += ImprimirViaAction;
-
-            var respostaAdm = acTefDial.Adm();
-
+            Console.Out.WriteLine(e.Mensagem);
         }
 
         private void ImprimirViaAction(object sender, IImprimeViaEventArgs e)
@@ -144,75 +149,6 @@ namespace AppTesteTef
                     Console.Out.WriteLine(imagemComprovante);
                 }
             }
-        }
-
-        private void Cnc_OnClick(object sender, RoutedEventArgs e)
-        {
-            var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
-                "teste",
-                "versaoTeste",
-                "nomeTesteAutomacao",
-                "83838",
-                false, false, false, false
-            ));
-
-            acTefDial.Inicializa();
-
-            requisicao.AguardandoResposta += AguardandoResposta;
-            requisicao.ExibeMensagem += ExibeMensagemAction;
-            requisicao.ImprimirVia += ImprimirViaAction;
-
-            var respostaAdm = acTefDial.Cnc("REDECARD", "17230215595", new DateTime(2018, 12, 04, 17, 23, 02), 50);
-
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Resposta Cnc");
-            foreach (var tefLinha in respostaAdm.Resposta)
-            {
-                Console.Out.WriteLine(tefLinha);
-            }
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-        }
-
-        private void Crt_OnClick(object sender, RoutedEventArgs e)
-        {
-            var requisicao = new AcTefRequisicao(new ConfigRequisicao());
-            var acTefDial = new TefExpress(requisicao, new ConfigAcTefDial(
-                "teste",
-                "versaoTeste",
-                "nomeTesteAutomacao",
-                "83838",
-                true, true, true, true
-            ));
-
-            acTefDial.Inicializa();
-
-            requisicao.AguardandoResposta += AguardandoResposta;
-            requisicao.ExibeMensagem += ExibeMensagemAction;
-            requisicao.ImprimirVia += ImprimirViaAction;
-            //requisicao.AutorizaDfe += AutorizaDfe;
-
-            var respostaAdm = acTefDial.Crt(10m, "98393");
-
-            /*Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine("Resposta CRT");
-            foreach (var tefLinha in respostaAdm.Resposta)
-            {
-                Console.Out.WriteLine(tefLinha);
-            }
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);
-            Console.Out.WriteLine(string.Empty);*/
         }
 
         private void AutorizaDfe(object sender, AutorizaDfeEventArgs e)
