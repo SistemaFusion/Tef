@@ -15,6 +15,8 @@ namespace Tef.Dominio
                     return new TefExpress(requisicao, configAcTefDial);
                 case Operadora.Cappta:
                     return new Cappta(requisicao, configAcTefDial);
+                case Operadora.Linx:
+                    return new Linx(requisicao, configAcTefDial);
                 case Operadora.TefDial:
                     return new AcTefDial(requisicao, configAcTefDial);
                 case Operadora.TefDialHomologacao:

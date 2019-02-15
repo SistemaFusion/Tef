@@ -64,6 +64,7 @@
     <Compile Include="ImprimeViaEventArgs.cs" />
     <Compile Include="IRequisicaoAtv.cs" />
     <Compile Include="ITef.cs" />
+    <Compile Include="Linx.cs" />
     <Compile Include="Md5Helper.cs" />
     <Compile Include="PayGO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
