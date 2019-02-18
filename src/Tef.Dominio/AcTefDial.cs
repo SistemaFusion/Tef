@@ -56,7 +56,7 @@ namespace Tef.Dominio
             return new RespostaCnc(tefResposta, respostaRequisicao);
         }
 
-        public virtual RespostaCrt Crt(decimal valor, string documentoVinculado)
+        public virtual RespostaCrt Crt(decimal valor, string documentoVinculado, bool confirmarManual = false)
         {
             VerificaInicializado();
             var requisicao = FabricarRequisicao.MontaRequisicaoCrt(
@@ -76,6 +76,11 @@ namespace Tef.Dominio
             var acTefStatus = statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
 
             return new RespostaCrt(tefResposta, respostaRequisicao, acTefStatus);
+        }
+
+        public virtual RespostaCrt ConfirmarCrt(AutorizaDfeEventArgs autorizaDfeEventArgs)
+        {
+            throw new NotImplementedException();
         }
 
         protected virtual TefLinhaLista EfetuaRequisicao(TefLinhaLista requisicao, out TefLinhaLista respostaRequisicaoAdm)
