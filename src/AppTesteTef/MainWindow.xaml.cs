@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Microsoft.Win32;
 using Tef.Dominio;
 using Tef.Dominio.Enums;
 using Tef.Infra;
@@ -13,7 +14,7 @@ namespace AppTesteTef
         public MainWindow()
         {
             InitializeComponent();
-            _operadora = Operadora.Cappta;
+            _operadora = Operadora.PayGo;
         }
 
         private void Atv_OnClick(object sender, RoutedEventArgs e)
@@ -89,6 +90,9 @@ namespace AppTesteTef
                 {
                     Console.Out.WriteLine(imagemComprovante);
                 }
+
+
+                new ImprimirViaTef(e.ViaUnica, NomeImpressora.Text).Imprimir();
             }
 
             if (e.IsTemViaCliente)
@@ -100,6 +104,8 @@ namespace AppTesteTef
                 {
                     Console.Out.WriteLine(imagemComprovante);
                 }
+
+                new ImprimirViaTef(e.ViaCliente, NomeImpressora.Text).Imprimir();
             }
 
             if (e.IsTemViaEstabelecimento)
@@ -111,6 +117,8 @@ namespace AppTesteTef
                 {
                     Console.Out.WriteLine(imagemComprovante);
                 }
+
+                new ImprimirViaTef(e.ViaEstabelecimento, NomeImpressora.Text).Imprimir();
             }
 
 
@@ -123,6 +131,8 @@ namespace AppTesteTef
                 {
                     Console.Out.WriteLine(imagemComprovante);
                 }
+
+                new ImprimirViaTef(e.ViaReduzida, NomeImpressora.Text).Imprimir();
             }
 
 
@@ -137,6 +147,8 @@ namespace AppTesteTef
                 {
                     Console.Out.WriteLine(imagemComprovante);
                 }
+
+                new ImprimirViaTef(e.Via1, NomeImpressora.Text).Imprimir();
             }
 
             if (e.IsTemVia2)
@@ -148,12 +160,60 @@ namespace AppTesteTef
                 {
                     Console.Out.WriteLine(imagemComprovante);
                 }
+
+                new ImprimirViaTef(e.Via2, NomeImpressora.Text).Imprimir();
             }
         }
 
         private void AutorizaDfe(object sender, AutorizaDfeEventArgs e)
         {
             e.AutorizadoDfe();
+        }
+
+        private void ImprimirArquivoDeRequisicaoTefManualmente_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var arquivoTef = string.Empty;
+
+                var janelaArquivo = new OpenFileDialog
+                {
+                    Filter = "Arquivo tef(*.tef)|*.tef"
+                };
+
+                if (janelaArquivo.ShowDialog() == true)
+                {
+                    arquivoTef = janelaArquivo.FileName;
+                }
+
+                if (janelaArquivo.FileName.IsNullOrEmpty())
+                {
+                    MessageBox.Show("Selecione um arquivo tef", "Selecione um arquivo tef", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+
+                var teflinha = TefLinhaLista.LoadArquivo(arquivoTef);
+
+                if (_operadora == Operadora.TefExpress)
+                {
+                    var imprimir = new ImprimeViaEventArgs(teflinha);
+
+                    ImprimirViaAction(null, imprimir);
+                }
+
+                if (_operadora != Operadora.TefExpress)
+                {
+                    var imprimir = new ImprimeViaEventArgs(teflinha);
+
+                    ImprimirViaAction(null, imprimir);
+                }
+            }
+            catch (Exception exception)
+            {
+                RegistarLog.Istancia.RegistrarException(exception);
+                MessageBox.Show(exception?.Message, "EXCEPTION", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

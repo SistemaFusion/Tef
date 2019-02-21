@@ -11,6 +11,11 @@
         <Button Content="ADM" HorizontalAlignment="Left" Margin="129,22,0,0" VerticalAlignment="Top" Width="75" Click="Adm_OnClick"/>
         <Button Content="CNC" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top" Width="75" Click="Cnc_OnClick"/>
         <Button Content="CRT" HorizontalAlignment="Left" Margin="129,64,0,0" VerticalAlignment="Top" Width="75" Click="Crt_OnClick"/>
+        <Button Content="Reimprimir por arquivo" HorizontalAlignment="Left" Margin="24,188,0,0" VerticalAlignment="Top" Width="180" Click="ImprimirArquivoDeRequisicaoTefManualmente_OnClick"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="24,160,0,0" TextWrapping="Wrap" 
+                 x:Name="NomeImpressora"
+                 VerticalAlignment="Top" Width="180"/>
+        <Label Content="Nome Impressora" HorizontalAlignment="Left" Margin="24,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.104,0.665" Width="180"/>
 
     </Grid>
 </Window>
