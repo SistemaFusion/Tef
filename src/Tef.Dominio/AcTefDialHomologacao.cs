@@ -7,6 +7,8 @@ namespace Tef.Dominio
     {
         private TefLinhaLista _respostaRequisicaoCrt;
         private TefLinhaLista _tefRespostaCrt;
+        private bool _statusTransacao;
+        private AcTefStatus _statusTransacaoCrt;
 
         public AcTefDialHomologacao(
             IAcTefRequisicao requisicao,
@@ -56,18 +58,18 @@ namespace Tef.Dominio
             var autorizaDfeEventArgs = new AutorizaDfeEventArgs(_respostaRequisicaoCrt);
             _requisicao.OnAutorizaDfe(autorizaDfeEventArgs);
 
+            _statusTransacao = ConfereStatus(_respostaRequisicaoCrt);
+            _statusTransacaoCrt = _statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
+
             if (confirmarManual)
-                return null;
+                return new RespostaCrt(_tefRespostaCrt, _respostaRequisicaoCrt, _statusTransacaoCrt);
 
             return ConfirmarCrt(autorizaDfeEventArgs);
         }
 
         public override RespostaCrt ConfirmarCrt(AutorizaDfeEventArgs autorizaDfeEventArgs)
         {
-            var statusTransacao = ConfereStatus(_respostaRequisicaoCrt);
-            var acTefStatus = statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
-
-            if (statusTransacao)
+            if (_statusTransacao)
             {
                 if (autorizaDfeEventArgs.IsContemRejeicao() || autorizaDfeEventArgs.IsContemErro())
                 {
@@ -93,7 +95,7 @@ namespace Tef.Dominio
                 ImprimirVias(_respostaRequisicaoCrt);
             }
 
-            return new RespostaCrt(_tefRespostaCrt, _respostaRequisicaoCrt, acTefStatus);
+            return new RespostaCrt(_tefRespostaCrt, _respostaRequisicaoCrt, _statusTransacaoCrt);
         }
 
         protected virtual void ImprimirVias(TefLinhaLista respostaRequisicao)
