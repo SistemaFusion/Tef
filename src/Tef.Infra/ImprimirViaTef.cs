@@ -22,7 +22,12 @@ namespace Tef.Infra
 
         public void Imprimir()
         {
-            var p = new PrintDocument { PrinterSettings = { PrinterName = _nomeImpressora } };
+            var p = new PrintDocument();
+
+            if (!string.IsNullOrEmpty(_nomeImpressora))
+            {
+                p.PrinterSettings.PrinterName = _nomeImpressora;
+            }
 
             p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
             {

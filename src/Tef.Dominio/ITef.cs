@@ -7,7 +7,9 @@ namespace Tef.Dominio
         RespostaAtv Atv();
         RespostaAdm Adm();
         RespostaCnc Cnc(string rede, string nsu, DateTime transacaoEm, decimal valor);
-        RespostaCrt Crt(decimal valor, string documentoVinculado);
+        RespostaCrt Crt(decimal valor, string documentoVinculado, bool confirmarManual = false);
+
+        RespostaCrt ConfirmarCrt(AutorizaDfeEventArgs autorizaDfeEventArgs);
 
         void Cnf(
             string redeAdquirente,

@@ -5,6 +5,11 @@ namespace Tef.Dominio
 {
     internal class AcTefDialHomologacao : AcTefDial
     {
+        private TefLinhaLista _respostaRequisicaoCrt;
+        private TefLinhaLista _tefRespostaCrt;
+        private bool _statusTransacao;
+        private AcTefStatus _statusTransacaoCrt;
+
         public AcTefDialHomologacao(
             IAcTefRequisicao requisicao,
             IConfigAcTefDial configAcTefDial
@@ -32,7 +37,7 @@ namespace Tef.Dominio
             return new RespostaCnc(tefResposta, respostaRequisicao);
         }
 
-        public override RespostaCrt Crt(decimal valor, string documentoVinculado)
+        public override RespostaCrt Crt(decimal valor, string documentoVinculado, bool confirmarManual = false)
         {
             VerificaInicializado();
             var requisicao = FabricarRequisicao.MontaRequisicaoCrt(
@@ -44,34 +49,42 @@ namespace Tef.Dominio
                 _configAcTefDial);
 
 
-            var tefResposta = _requisicao.Enviar(requisicao, this);
+            _tefRespostaCrt = _requisicao.Enviar(requisicao, this);
 
-            var respostaRequisicao = _requisicao.AguardaRespostaRequisicao();
+            _respostaRequisicaoCrt = _requisicao.AguardaRespostaRequisicao();
 
-            _requisicao.OnExibeMensagem(new ExibeMensagemEventArgs(respostaRequisicao));
+            _requisicao.OnExibeMensagem(new ExibeMensagemEventArgs(_respostaRequisicaoCrt));
 
-            var autorizaDfeEventArgs = new AutorizaDfeEventArgs(respostaRequisicao);
+            var autorizaDfeEventArgs = new AutorizaDfeEventArgs(_respostaRequisicaoCrt);
             _requisicao.OnAutorizaDfe(autorizaDfeEventArgs);
 
-            var statusTransacao = ConfereStatus(respostaRequisicao);
-            var acTefStatus = statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
+            _statusTransacao = ConfereStatus(_respostaRequisicaoCrt);
+            _statusTransacaoCrt = _statusTransacao ? AcTefStatus.Sucesso : AcTefStatus.Falha;
 
-            if (statusTransacao)
+            if (confirmarManual)
+                return new RespostaCrt(_tefRespostaCrt, _respostaRequisicaoCrt, _statusTransacaoCrt);
+
+            return ConfirmarCrt(autorizaDfeEventArgs);
+        }
+
+        public override RespostaCrt ConfirmarCrt(AutorizaDfeEventArgs autorizaDfeEventArgs)
+        {
+            if (_statusTransacao)
             {
                 if (autorizaDfeEventArgs.IsContemRejeicao() || autorizaDfeEventArgs.IsContemErro())
                 {
-                    if (respostaRequisicao.RequerConfirmacao())
+                    if (_respostaRequisicaoCrt.RequerConfirmacao())
                         Ncn(
-                            respostaRequisicao.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
-                            respostaRequisicao.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor
+                            _respostaRequisicaoCrt.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
+                            _respostaRequisicaoCrt.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor
                         );
                 }
 
-                if (respostaRequisicao.RequerConfirmacao() && autorizaDfeEventArgs.IsAutorizado())
+                if (_respostaRequisicaoCrt.RequerConfirmacao() && autorizaDfeEventArgs.IsAutorizado())
                 {
                     Cnf(
-                        respostaRequisicao.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
-                        respostaRequisicao.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor,
+                        _respostaRequisicaoCrt.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
+                        _respostaRequisicaoCrt.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor,
                         NomeAplicativoComercial,
                         VersaoAplicativoComercial,
                         RegistroCertificacao
@@ -79,10 +92,10 @@ namespace Tef.Dominio
                 }
 
 
-                ImprimirVias(respostaRequisicao);
+                ImprimirVias(_respostaRequisicaoCrt);
             }
-               
-            return new RespostaCrt(tefResposta, respostaRequisicao, acTefStatus);
+
+            return new RespostaCrt(_tefRespostaCrt, _respostaRequisicaoCrt, _statusTransacaoCrt);
         }
 
         protected virtual void ImprimirVias(TefLinhaLista respostaRequisicao)
