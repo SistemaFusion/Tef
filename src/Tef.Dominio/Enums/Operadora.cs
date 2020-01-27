@@ -6,6 +6,7 @@
         TefExpress = 2,
         Cappta = 3,
         Linx = 4,
+        GetCard = 5,
         TefDial = 98,
         TefDialHomologacao = 99
     }
