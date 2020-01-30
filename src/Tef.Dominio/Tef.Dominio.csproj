@@ -58,6 +58,7 @@
     <Compile Include="ExtTefLinhas.cs" />
     <Compile Include="FabricaOperadora.cs" />
     <Compile Include="FabricarRequisicao.cs" />
+    <Compile Include="GetCard.cs" />
     <Compile Include="IAcTefRequisicao.cs" />
     <Compile Include="IConfigAcTefDial.cs" />
     <Compile Include="IImprimeViaEventArgs.cs" />
