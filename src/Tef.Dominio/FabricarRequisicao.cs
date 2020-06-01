@@ -34,10 +34,10 @@ namespace Tef.Dominio
         }
 
         public static TefLinhaLista MontaRequisicaoCnc(
-            int idRequisicao, 
-            string rede, 
-            string nsu, 
-            DateTime transacaoEm, 
+            int idRequisicao,
+            string rede,
+            string nsu,
+            DateTime transacaoEm,
             decimal valor,
             IConfigAcTefDial configAcTefDial
             )
@@ -62,11 +62,12 @@ namespace Tef.Dominio
         }
 
         public static TefLinhaLista MontaRequisicaoCnf(
-            int idRequisicao, 
-            string redeAdquirente, 
-            string codigoControle, 
-            string nomeAutomacao, 
-            string versaoAutomacao, 
+            int idRequisicao,
+            string redeAdquirente,
+            string nsu,
+            string codigoControle,
+            string nomeAutomacao,
+            string versaoAutomacao,
             string registroCertificacao)
         {
             var listaRequisicao = new TefLinhaLista
@@ -74,6 +75,7 @@ namespace Tef.Dominio
                 new TefLinha("000-000", "CNF"),
                 new TefLinha("001-000", idRequisicao),
                 new TefLinha("010-000", redeAdquirente),
+                new TefLinha("012-000", nsu),
                 new TefLinha("027-000", codigoControle),
                 new TefLinha("735-000", nomeAutomacao),
                 new TefLinha("736-000", versaoAutomacao),
@@ -84,8 +86,8 @@ namespace Tef.Dominio
         }
 
         public static TefLinhaLista MontaRequisicaoCrt(
-            int idRequisicao, 
-            decimal valor, 
+            int idRequisicao,
+            decimal valor,
             string documentoVinculado,
             string nomeAutomacao,
             string registroCertificacao,

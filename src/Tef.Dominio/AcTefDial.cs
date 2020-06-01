@@ -94,6 +94,7 @@ namespace Tef.Dominio
 
         public virtual void Cnf(
             string redeAdquirente,
+            string nsu,
             string codigoControle,
             string nomeAutomacao,
             string versaoAutomacao,
@@ -104,6 +105,7 @@ namespace Tef.Dominio
             _requisicao.Enviar(FabricarRequisicao.MontaRequisicaoCnf(
                 IdRequisicao,
                 redeAdquirente,
+                nsu,
                 codigoControle,
                 nomeAutomacao,
                 versaoAutomacao,
