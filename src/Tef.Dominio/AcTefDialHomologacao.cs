@@ -84,6 +84,7 @@ namespace Tef.Dominio
                 {
                     Cnf(
                         _respostaRequisicaoCrt.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
+                        _respostaRequisicaoCrt.BuscaLinha(AcTefIdentificadorCampos.Nsu).Valor,
                         _respostaRequisicaoCrt.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor,
                         NomeAplicativoComercial,
                         VersaoAplicativoComercial,
@@ -118,6 +119,7 @@ namespace Tef.Dominio
                 {
                     Cnf(
                         respostaRequisicaoAdm.BuscaLinha(AcTefIdentificadorCampos.RedeAdquirente).Valor,
+                        respostaRequisicaoAdm.BuscaLinha(AcTefIdentificadorCampos.Nsu).Valor,
                         respostaRequisicaoAdm.BuscaLinha(AcTefIdentificadorCampos.CodigoControle).Valor,
                         NomeAplicativoComercial,
                         VersaoAplicativoComercial,

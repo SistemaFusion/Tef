@@ -13,6 +13,7 @@ namespace Tef.Dominio
 
         void Cnf(
             string redeAdquirente,
+            string nsu,
             string codigoControle,
             string nomeAutomacao,
             string versaoAutomacao,
